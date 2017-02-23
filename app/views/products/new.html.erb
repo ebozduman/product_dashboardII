@@ -1,0 +1,17 @@
+<h1 style="width:160px; margin:auto; padding-top: 50px; padding-bottom:20px">New product</h1>
+<form action="/products" method="post" style="width: 160px; margin:auto">
+    <input style="margin-bottom:20px" name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <select name="category" style="margin-bottom:20px">
+        <% @categories.each do |category|%>
+        <option value="<%=category.id%>"><%=category.name%></option>
+        <% end %>
+    </select>
+    </br>
+    Name <input style="margin-bottom:20px" type="text" name="name">
+    Description <input style="margin-bottom:20px" type="text" name="description">
+    Price $<input style="margin-bottom:20px" type="float" name="price">
+    <input style="margin-bottom:20px" type="submit" value="Create">
+</form>
+<div style="width:160px; margin:auto">
+    <a style="text-decoration: underline" href="/">Back</a>
+</div>

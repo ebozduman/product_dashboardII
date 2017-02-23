@@ -1,0 +1,35 @@
+<div style="width:400px; margin:auto; padding-top:50px">
+    <div>
+        <p style="display:inline-block">Category:</p>
+        <p style="display:inline-block; padding-left:18px"> <%= @prod.category.name %></p>
+    </div>
+    <div>
+        <p style="display:inline-block">Name:</p>
+        <p style="display:inline-block; padding-left:18px"> <%= @prod.name %></p>
+    </div>
+    <div>
+        <p style="display:inline-block">Description:</p>
+        <p style="display:inline-block; padding-left:18px"> <%= @prod.description %></p>
+    </div>
+    <div>
+        <p style="display:inline-block">Price:</p>
+        <p style="display:inline-block; padding-left:50px"> $<%= @prod.price %></p>
+    </div>
+</div>
+<div style="width:400px; margin:auto">
+    <a style="text-decoration: underline" href="/products/<%= @prod.id %>/edit">Edit</a>
+    <p style="display:inline-block; font-weight: bold"> | </p>
+    <a style="text-decoration: underline" href="/">Back</a>
+</div>
+<div style="width:400px; margin:auto">
+    <form action="/comments/create" method="post">
+        <input style="margin-bottom:20px" name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        Comment: </br><input style="width: 300px;margin-bottom:20px" type="text" name="comment">
+        <input type="hidden" name="prod_id" value="<%= @prod.id %>">
+        <input style="margin-bottom:20px" type="submit" value="Submit">
+    </form>
+    <% @comments.reverse_each do |c| %>
+        <%= c.comment %> - <%= c.created_at.strftime('%m/%d/%y')%>
+        </br>
+    <% end %>
+</div>

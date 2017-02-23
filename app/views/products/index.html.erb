@@ -1,0 +1,35 @@
+<h1 style="display:inline-block; width: 500px; margin:auto; padding-left: 150px;padding-top: 50px; padding-bottom:20px">Listing products</h1>
+<a style="display:inline-block; margin:auto"; href="/comments"><button>All comments</button></a>
+<table class="table table-bordered" style="width: 600px; margin:auto; padding-bottom: 20px">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @all_products.each do |product| %>
+            <tr>
+                <td><%= product.name %></td>
+                <td><%= product.description %></td>
+                <td>$<%= product.price %></td>
+                <td><%= Category.find(product.category.id).name %></td>
+                <td>
+                    <a style="text-decoration:underline; color: blue; display:inline-block" href="/products/<%=product.id%>">Show</a>
+                    <p style="display:inline-block"> | </p>
+                    <a style="text-decoration:underline; color: blue; display:inline-block" href="/products/<%=product.id%>/edit">Edit</a>
+                    <p style="display:inline-block"> | </p>
+                    <form style="display:inline-block" action="/delete/<%=product.id%>" method="post">
+                        <input style="margin-bottom:20px" name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                        <input type="submit" style="background:none; color:blue; text-decoration: underline;border:none" value="Destroy">
+                    </form>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<div style="width: 600px; margin:auto; padding-top: 20px">
+    <a style="text-decoration: underline" href="/products/new">New Product</a>
+</div>

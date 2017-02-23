@@ -1,0 +1,20 @@
+<h1 style="width:180px; margin:auto; padding-top: 50px; padding-bottom:20px">Editing product</h1>
+<form action="/products/<%= @prod.id %>" method="post" style="width: 180px; margin:auto">
+    <input style="margin-bottom:20px" name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <select name="category" style="margin-bottom:20px">
+        <option value="<%=@prod.category.id%>"><%=@prod.category.name%></option>
+        <% @categories.each do |category|%>
+            <option value="<%=category.id%>"><%=category.name%></option>
+        <% end %>
+    </select>
+    </br>
+    Name <input style="margin-bottom:20px" type="text" name="name" value="<%= @prod.name %>">
+    Description <input style="margin-bottom:20px" type="text" name="description" value="<%= @prod.description %>">
+    Price <input style="margin-bottom:20px" type="text" name="price" value="$<%= @prod.price %>">
+    <input style="margin-bottom:20px" type="submit" value="Update">
+</form>
+<div style="width:180px; margin:auto">
+    <a style="text-decoration: underline" href="/products/<%= @prod.id %>">Show</a>
+    <p style="display:inline-block; font-weight: bold"> | </p>
+    <a style="text-decoration: underline" href="/">Back</a>
+</div>
